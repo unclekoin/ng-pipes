@@ -1,3 +1,49 @@
 <div class="container p-5">
   <h1>{{ title }}</h1>
+  <hr>
+
+  <h4 class="my-3">Number</h4>
+  <div>{{ e | number: '1.1-5' }}</div>
+  <div>{{ e | number: '3.1-2' }}</div>
+  <div>{{ e | number: '1.0-0' }}</div>
+
+  <h4 class="my-3">String</h4>
+  <div>{{ str | uppercase | lowercase | titlecase }}</div>
+  <div>{{ str | titlecase | slice: 0:-2 }}</div>
+
+  <h4 class="my-3">Date</h4>
+  <div>{{ date | date: 'MMMM dd, yyyy'}}</div>
+
+  <h4 class="my-3">Currency, Percent</h4>
+  <div>{{ float }}</div>
+  <div>{{ float | currency }}</div>
+  <div>{{ float | percent: '2.0-0' }}</div>
+
+  <h4 class="my-3">JSON</h4>
+  <pre>{{ obj | json }}</pre>
+
+  <h2 class="my-3">Own Pipes</h2>
+  <div>{{ 10 | multiply }}</div>
+  <div>{{ 10 | multiply: 3 }}</div>
+  <div>{{ 10 | multiply: 4 }}</div>
+
+  <div>{{ '      hello world       ' | titlecase | exMarks }}</div>
+
+  <h2 class="my-3">Filter List</h2>
+  <div class="mb-3">
+    <input
+      [(ngModel)]="search"
+      type="text"
+      class="form-control"
+      placeholder="search..."
+    >
+  </div>
+  <div *ngFor="let post of posts | filter: search" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title" [innerHTML]="post.title | highlight: search"></h5>
+      <p class="card-text" [innerHTML]="post.text | highlight: search"></p>
+      <button class="btn btn-outline-primary">Read more...</button>
+    </div>
+  </div>
+
 </div>
