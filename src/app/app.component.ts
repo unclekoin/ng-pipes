@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface IPost {
   id: number;
@@ -50,4 +51,24 @@ export class AppComponent {
       text: 'The Academy Awards will broadcast live at 8 p.m. EST on ABC. You can also watch online at ABC.com, streaming options include YouTube TV and Hulu.'
     }
   ];
+
+  public addPost() {
+    this.posts.unshift({
+      id: Date.now(),
+      title: 'Very interesting news',
+      text: 'Some text'
+    });
+  }
+
+  public promise: Promise<string> = new Promise<string>((resolve) => {
+    setTimeout(() => {
+      resolve('Promise Resolved');
+    }, 3000);
+  });
+
+  public newDate: Observable<Date> = new Observable<Date>((obs) => {
+    setInterval(() => {
+      obs.next(new Date());
+    }, 1000);
+  });
 }

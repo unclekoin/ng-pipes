@@ -46,4 +46,9 @@
     </div>
   </div>
 
+  <button (click)="addPost()" class="btn btn-outline-primary">Add Post</button>
+
+  <h2 class="my-3">Async Pipes</h2>
+  <div>Wait for it... {{ promise | async | lowercase }}</div>
+  <div>Date: {{ newDate | async | date: 'medium' }}</div>
 </div>
